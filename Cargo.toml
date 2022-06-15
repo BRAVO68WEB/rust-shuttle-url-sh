@@ -7,6 +7,7 @@ license = "MIT"
 repository = "https://github.com/bravo68web/url-shortener"
 
 [lib]
+crate-type = ["cdylib"]
 
 [dependencies]
 rocket = { version = "0.5.0-rc.1", features = ["json"] }
