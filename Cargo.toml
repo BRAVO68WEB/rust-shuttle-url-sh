@@ -1,10 +1,10 @@
 [package]
-name = "url-shortener"
+name = "b68-ufm-mc"
 version = "0.1.0"
 edition = "2021"
 description = "URL shortener"
 license = "MIT"
-repository = "https://github.com/bravo68web/url-shortener"
+repository = "https://github.com/BRAVO68WEB/rust-shuttle-url-sh"
 
 [lib]
 crate-type = ["cdylib"]

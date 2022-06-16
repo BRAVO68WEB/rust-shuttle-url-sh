@@ -22,6 +22,12 @@ struct StoredURL {
     pub url: String,
 }
 
+#[get("/")]
+async fn redirect(id: String, state: &State<AppState>) -> Result<Redirect, status::Custom<String>> {
+    let github_url = "https://github.com/BRAVO68WEB/rust-shuttle-url-sh"
+    Ok(Redirect::to(github_url))
+}
+
 #[get("/<id>")]
 async fn redirect(id: String, state: &State<AppState>) -> Result<Redirect, status::Custom<String>> {
     let stored_url: StoredURL = sqlx::query_as("SELECT * FROM urls WHERE id = $1")
@@ -31,11 +37,11 @@ async fn redirect(id: String, state: &State<AppState>) -> Result<Redirect, statu
         .map_err(|err| match err {
             sqlx::Error::RowNotFound => status::Custom(
                 Status::NotFound,
-                "the requested shortened URL does not exist".into(),
+                "The requested shortened URL does not exist, Maybe !! I dont Know 🤷".into(),
             ),
             _ => status::Custom(
                 Status::InternalServerError,
-                "something went wrong, sorry 🤷".into(),
+                "Something went wrong, sorry 🤷".into(),
             ),
         })?;
 
@@ -49,7 +55,7 @@ async fn shorten(url: String, state: &State<AppState>) -> Result<String, status:
     let parsed_url = Url::parse(&url).map_err(|err| {
         status::Custom(
             Status::UnprocessableEntity,
-            format!("url validation failed: {err}"),
+            format!("Url validation failed: {err}"),
         )
     })?;
 
