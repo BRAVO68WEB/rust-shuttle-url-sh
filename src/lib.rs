@@ -24,7 +24,7 @@ struct StoredURL {
 
 #[get("/")]
 async fn redirect(id: String, state: &State<AppState>) -> Result<Redirect, status::Custom<String>> {
-    let github_url = "https://github.com/BRAVO68WEB/rust-shuttle-url-sh"
+    let github_url = "https://github.com/BRAVO68WEB/rust-shuttle-url-sh";
     Ok(Redirect::to(github_url))
 }
 
