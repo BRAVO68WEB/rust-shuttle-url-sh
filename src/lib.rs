@@ -23,7 +23,7 @@ struct StoredURL {
 }
 
 #[get("/")]
-async fn redirect(id: String, state: &State<AppState>) -> Result<Redirect, status::Custom<String>> {
+async fn home(state: &State<AppState>) -> Result<Redirect, status::Custom<String>> {
     let github_url = "https://github.com/BRAVO68WEB/rust-shuttle-url-sh";
     Ok(Redirect::to(github_url))
 }
@@ -82,7 +82,7 @@ async fn rocket(pool: PgPool) -> Result<Rocket<Build>, shuttle_service::Error> {
 
     let state = AppState { pool };
     let rocket = rocket::build()
-        .mount("/", routes![redirect, shorten])
+        .mount("/", routes![home, redirect, shorten])
         .manage(state);
 
     Ok(rocket)
